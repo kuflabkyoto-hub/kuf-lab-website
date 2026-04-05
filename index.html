@@ -88,10 +88,11 @@ header {
 }
 .nav-inner {
   width: 100%;
-  padding: 0 8px;
+  padding: 0 4px 0 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: visible;
 }
 .nav-logo {
   text-decoration: none;
@@ -138,8 +139,9 @@ header {
   cursor: pointer;
   background: none;
   border: none;
-  padding: 8px;
-  margin-right: 8px;
+  padding: 12px;
+  margin-right: 12px;
+  flex-shrink: 0;
 }
 .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--gold); transition: all .3s; }
 
@@ -966,6 +968,7 @@ footer {
   .wrap { padding: 80px 20px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
+  .nav-logo img { height: 40px !important; }
   .footer-wrap { padding: 0 20px; }
 
   /* Hero */
