@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kuf-lab.netlify.app/sitemap.xml
