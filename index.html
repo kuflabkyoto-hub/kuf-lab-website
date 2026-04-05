@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUF Lab. | 京都大学 金融キャリア支援コミュニティ</title>
+<link rel="stylesheet" href="embedded_fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --navy:       #0b1a2e;
+  --navy-mid:   #0f2240;
+  --navy-light: #162d52;
+  --gold:       #c8a96e;
+  --gold-bright:#e2c88a;
+  --gold-dim:   #a07840;
+  --gold-faint: rgba(200,169,110,.12);
+  --cream:      #f0ebe0;
+  --silver:     #8a95aa;
+  --muted:      #5c6880;
+  --border:     rgba(200,169,110,.18);
+  --border-dim: rgba(200,169,110,.07);
+  --font-d: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-b: 'Noto Sans JP', sans-serif;
+  --font-m: 'DM Mono', 'Courier New', monospace;
+}
+
+body {
+  font-family: var(--font-b);
+  color: var(--cream);
+  background: var(--navy);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .75s ease, transform .75s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.d1 { transition-delay: .08s; }
+.d2 { transition-delay: .16s; }
+.d3 { transition-delay: .24s; }
+.d4 { transition-delay: .32s; }
+
+/* ════════════════════════════════════════
+   HEADER
+════════════════════════════════════════ */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 64px;
+  background: rgba(11,26,46,.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+.nav-inner {
+  width: 100%;
+  padding: 0 0 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0;
+  align-items: center;
+}
+.nav-links a {
+  display: block;
+  padding: 0 15px;
+  font-family: var(--font-m);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: var(--silver);
+  text-decoration: none;
+  line-height: 64px;
+  transition: color .2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--gold-bright); }
+.nav-links a.active { color: var(--gold-bright); }
+.nav-links a.entry-link {
+  background: var(--gold);
+  color: var(--navy);
+  margin-left: 6px;
+  padding: 0 22px;
+  font-weight: 600;
+  transition: background .2s;
+}
+.nav-links a.entry-link:hover { background: var(--gold-bright); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+  margin-right: 8px;
+}
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--gold); transition: all .3s; }
+
+.mob-menu {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  background: rgba(11,26,46,.99);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 32px 28px;
+  flex-direction: column;
+  z-index: 999;
+}
+.mob-menu.open { display: flex; }
+.mob-menu a {
+  font-family: var(--font-m);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--silver);
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-dim);
+  transition: color .2s;
+}
+.mob-menu a:last-child { border-bottom: none; }
+.mob-menu a:hover { color: var(--gold-bright); }
+
+/* ════════════════════════════════════════
+   SECTION BASE
+════════════════════════════════════════ */
+section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 120px 48px;
+  width: 100%;
+}
+
+/* セクション背景グラデーション */
+.section-navy {
+  background: linear-gradient(175deg, var(--navy) 0%, var(--navy-mid) 100%);
+}
+.section-navy-alt {
+  background: linear-gradient(175deg, var(--navy-mid) 0%, var(--navy) 100%);
+}
+
+/* セクション区切り */
+.sec-label {
+  font-family: var(--font-m);
+  font-size: 9.5px;
+  letter-spacing: .36em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  display: block;
+  margin-bottom: 16px;
+}
+.sec-title {
+  font-family: var(--font-d);
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--cream);
+  margin-bottom: 6px;
+  letter-spacing: .01em;
+}
+.sec-title em { font-style: italic; color: var(--gold-bright); }
+.sec-sub {
+  font-size: 14px;
+  color: var(--silver);
+  line-height: 1.7;
+  margin-bottom: 0;
+  max-width: 560px;
+}
+.gold-bar {
+  width: 40px;
+  height: 1.5px;
+  background: var(--gold);
+  margin: 22px 0 52px;
+  opacity: .85;
+}
+
+/* ════════════════════════════════════════
+   HOME / HERO
+════════════════════════════════════════ */
+#home {
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('kyoto_clock_tower.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  filter: saturate(.10) brightness(1.05) contrast(.92);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    175deg,
+    rgba(255,255,255,.44) 0%,
+    rgba(220,220,228,.20) 38%,
+    rgba(11,26,46,.70) 72%,
+    rgba(11,26,46,.92) 100%
+  );
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 80px 40px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero-logo-block {
+  margin-bottom: 28px;
+  animation: fadeUp .9s .3s both;
+}
+.hero-sub {
+  font-family: var(--font-d);
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240,235,224,.88);
+  margin-bottom: 44px;
+  animation: fadeUp .9s .5s both;
+  letter-spacing: .02em;
+}
+.hero-btn {
+  display: inline-block;
+  font-family: var(--font-m);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold);
+  padding: 17px 44px;
+  text-decoration: none;
+  transition: background .3s, transform .3s;
+  animation: fadeUp .9s .65s both;
+}
+.hero-btn:hover { background: var(--gold-bright); transform: translateY(-2px); }
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeIn 1s 1.2s both;
+}
+.hero-scroll-label {
+  font-family: var(--font-m);
+  font-size: 8.5px;
+  letter-spacing: .25em;
+  color: rgba(200,169,110,.45);
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  animation: scrollPulse 2s 1.5s infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:.35;} 50%{opacity:.9;} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:none;} }
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+
+/* ════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════ */
+#about { background: linear-gradient(175deg, var(--navy) 0%, var(--navy-mid) 100%); }
+
+.about-intro {
+  max-width: 820px;
+  margin-bottom: 72px;
+}
+.about-intro-lead {
+  font-family: var(--font-d);
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--cream);
+  margin-bottom: 24px;
+  letter-spacing: .01em;
+}
+.about-intro-lead em { font-style: italic; color: var(--gold-bright); }
+.about-intro-body {
+  font-size: 15px;
+  color: var(--silver);
+  line-height: 2;
+  font-weight: 300;
+}
+
+.about-blocks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-dim);
+  border: 1px solid var(--border-dim);
+}
+.about-block {
+  padding: 44px 36px;
+  background: var(--navy);
+  position: relative;
+  transition: background .3s;
+}
+.about-block:hover { background: rgba(255,255,255,.02); }
+.about-block-num {
+  font-family: var(--font-d);
+  font-size: 64px;
+  font-weight: 300;
+  color: rgba(200,169,110,.08);
+  line-height: 1;
+  display: block;
+  margin-bottom: 20px;
+  letter-spacing: -.02em;
+}
+.about-block-title {
+  font-family: var(--font-m);
+  font-size: 9.5px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+.about-block-text {
+  font-size: 14px;
+  color: var(--silver);
+  line-height: 1.9;
+  font-weight: 300;
+}
+.about-block-text strong { color: var(--cream); font-weight: 500; }
+
+/* ════════════════════════════════════════
+   SERVICE
+════════════════════════════════════════ */
+#service { background: linear-gradient(175deg, var(--navy-mid) 0%, var(--navy) 100%); }
+
+.service-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-dim);
+  border: 1px solid var(--border-dim);
+}
+.service-card {
+  background: var(--navy-mid);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  transition: background .3s;
+}
+.service-card:hover { background: var(--navy-light); }
+.service-card-body {
+  padding: 44px 36px 32px;
+  flex: 1;
+  position: relative;
+}
+.service-card-body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 70%);
+}
+.service-card-num {
+  font-family: var(--font-d);
+  font-size: 80px;
+  font-weight: 300;
+  color: rgba(200,169,110,.07);
+  line-height: 1;
+  position: absolute;
+  right: 24px; top: 20px;
+  letter-spacing: -.03em;
+}
+.service-card-title {
+  font-family: var(--font-d);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 4px;
+  letter-spacing: .01em;
+  line-height: 1.2;
+}
+.service-card-en {
+  font-family: var(--font-m);
+  font-size: 8.5px;
+  letter-spacing: .26em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  display: block;
+}
+.service-card-text {
+  font-size: 13.5px;
+  color: var(--silver);
+  line-height: 1.9;
+  font-weight: 300;
+}
+.service-card-foot {
+  padding: 16px 36px;
+  border-top: 1px solid var(--border-dim);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.service-card-time {
+  font-family: var(--font-m);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.service-card-time::before {
+  content: '';
+  display: inline-block;
+  width: 18px; height: 1px;
+  background: var(--gold);
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+/* ════════════════════════════════════════
+   MENTOR
+════════════════════════════════════════ */
+#mentor { background: linear-gradient(175deg, var(--navy) 0%, var(--navy-mid) 100%); }
+
+.mentor-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Track record */
+.track-card {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.025);
+}
+.track-card-header {
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--border-dim);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.track-card-title {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: .26em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.track-card-badge {
+  font-family: var(--font-m);
+  font-size: 8.5px;
+  letter-spacing: .1em;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+}
+.track-list { padding: 8px 0; }
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--border-dim);
+  transition: background .2s;
+}
+.track-item:last-child { border-bottom: none; }
+.track-item:hover { background: rgba(200,169,110,.03); }
+.track-idx {
+  font-family: var(--font-m);
+  font-size: 9px;
+  color: var(--muted);
+  width: 20px;
+  flex-shrink: 0;
+}
+.track-firm {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--cream);
+  flex: 1;
+  letter-spacing: .02em;
+}
+
+/* Advisor */
+.advisor-card {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.025);
+  overflow: hidden;
+  position: relative;
+}
+.advisor-card-inner { padding: 40px 36px; }
+.advisor-photo-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+.advisor-photo {
+  width: 88px;
+  height: 110px;
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  filter: grayscale(15%);
+}
+.advisor-meta { flex: 1; }
+.advisor-tag {
+  font-family: var(--font-m);
+  font-size: 8.5px;
+  letter-spacing: .28em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+.advisor-name {
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 8px;
+  letter-spacing: .01em;
+}
+.advisor-role {
+  font-size: 12.5px;
+  color: var(--gold);
+  line-height: 1.7;
+}
+.advisor-divider {
+  width: 32px; height: 1px;
+  background: var(--gold-dim);
+  margin-bottom: 20px;
+}
+.advisor-desc {
+  font-size: 13.5px;
+  color: var(--silver);
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+/* ════════════════════════════════════════
+   SPONSOR
+════════════════════════════════════════ */
+#sponsor { background: linear-gradient(175deg, var(--navy-mid) 0%, var(--navy) 100%); }
+
+.sponsor-cs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 40px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.015);
+  position: relative;
+  overflow: hidden;
+}
+.sponsor-cs::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,.04) 0%, transparent 70%);
+}
+.sponsor-cs-eyebrow {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: .36em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  position: relative;
+}
+.sponsor-cs-text {
+  font-family: var(--font-d);
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240,235,224,.65);
+  letter-spacing: .04em;
+  margin-bottom: 24px;
+  position: relative;
+}
+.sponsor-cs-text span { color: var(--gold); }
+.sponsor-cs-sub {
+  font-size: 13.5px;
+  color: var(--silver);
+  line-height: 1.8;
+  max-width: 480px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* ════════════════════════════════════════
+   EVENT
+════════════════════════════════════════ */
+#event { background: linear-gradient(175deg, var(--navy) 0%, var(--navy-mid) 100%); }
+
+.event-cs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 40px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.015);
+  position: relative;
+  overflow: hidden;
+}
+.event-cs::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,.04) 0%, transparent 70%);
+}
+.event-cs-eyebrow {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: .36em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  position: relative;
+}
+.event-cs-text {
+  font-family: var(--font-d);
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240,235,224,.65);
+  letter-spacing: .04em;
+  margin-bottom: 24px;
+  position: relative;
+}
+.event-cs-text span { color: var(--gold); }
+.event-cs-sub {
+  font-size: 13.5px;
+  color: var(--silver);
+  line-height: 1.8;
+  max-width: 440px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* ════════════════════════════════════════
+   Q&A
+════════════════════════════════════════ */
+#qa { background: linear-gradient(175deg, var(--navy-mid) 0%, var(--navy) 100%); }
+
+.qa-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.qa-side { position: sticky; top: 100px; }
+.qa-side-label {
+  font-family: var(--font-m);
+  font-size: 9.5px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  display: block;
+  margin-bottom: 14px;
+}
+.qa-side-title {
+  font-family: var(--font-d);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 22px;
+}
+.qa-side-bar { width: 36px; height: 1.5px; background: var(--gold); opacity: .8; margin-bottom: 24px; }
+.qa-side-text {
+  font-size: 13.5px;
+  color: var(--silver);
+  line-height: 1.85;
+  font-weight: 300;
+}
+
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid var(--border-dim); }
+.faq-item:first-child { border-top: 1px solid var(--border-dim); }
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 0;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.faq-q-mark {
+  font-family: var(--font-d);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+.faq-q-text {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.6;
+}
+.faq-toggle {
+  width: 26px; height: 26px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all .3s;
+  font-size: 16px;
+  color: var(--gold);
+  font-weight: 300;
+}
+details[open] .faq-toggle { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+.faq-answer {
+  padding: 4px 0 22px calc(16px + 20px + 16px);
+  font-size: 14px;
+  color: var(--silver);
+  line-height: 1.95;
+  font-weight: 300;
+  animation: faqSlide .3s ease;
+}
+@keyframes faqSlide { from{opacity:0;transform:translateY(-6px);} to{opacity:1;transform:none;} }
+
+/* ════════════════════════════════════════
+   ENTRY
+════════════════════════════════════════ */
+#entry { background: linear-gradient(175deg, var(--navy) 0%, var(--navy-mid) 100%); }
+
+.entry-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.entry-deadline-box {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 20px 36px;
+  background: rgba(200,169,110,.06);
+  border: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.entry-deadline-label {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: .24em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.entry-deadline-date {
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--gold-bright);
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+.entry-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+  max-width: 540px;
+  margin: 0 auto 52px;
+}
+.entry-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--silver);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.entry-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+.entry-gform-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--font-m);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold);
+  padding: 20px 56px;
+  text-decoration: none;
+  transition: background .3s, gap .3s;
+}
+.entry-gform-btn:hover { background: var(--gold-bright); gap: 24px; }
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer {
+  background: #060d1a;
+  border-top: 1px solid var(--border-dim);
+  padding: 60px 0 36px;
+}
+.footer-wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: start;
+  padding-bottom: 44px;
+  border-bottom: 1px solid var(--border-dim);
+}
+.footer-brand { display: flex; flex-direction: column; }
+.footer-logo-img { height: auto; max-height: 72px; width: auto; max-width: 320px; display: block; margin-bottom: 14px; object-fit: contain; }
+.footer-tagline {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .06em;
+  line-height: 1.7;
+}
+.footer-advisor {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 12px;
+}
+.footer-nav-col { display: flex; flex-wrap: wrap; gap: 12px 28px; padding-top: 4px; align-self: start; }
+.footer-nav-col a {
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--silver);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-nav-col a:hover { color: var(--gold-bright); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-copy, .footer-built {
+  font-family: var(--font-m);
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  color: var(--muted);
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (max-width: 1000px) {
+  .wrap { padding: 100px 32px; }
+  .about-blocks { grid-template-columns: 1fr; }
+  .service-header { grid-template-columns: 1fr; gap: 24px; }
+  .service-cards { grid-template-columns: 1fr; }
+  .mentor-layout { grid-template-columns: 1fr; }
+  .qa-layout { grid-template-columns: 1fr; gap: 40px; }
+  .qa-side { position: static; }
+  .entry-inner { padding: 0; }
+  .footer-top { grid-template-columns: 1fr; gap: 36px; }
+}
+@media (max-width: 768px) {
+  .wrap { padding: 88px 24px; }
+  .service-cards { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .footer-wrap { padding: 0 24px; }
+}
+@media (max-width: 480px) {
+  .about-blocks { grid-template-columns: 1fr; }
+  .entry-cta-card { padding: 40px 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header>
+  <nav class="nav-inner">
+    <a class="nav-logo" href="#home">
+      <img src="kuf_lab_hp_header.png" alt="KUF Lab." style="height:52px;width:auto;display:block;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#service">SERVICE</a></li>
+      <li><a href="#mentor">MENTOR</a></li>
+      <li><a href="#sponsor">SPONSOR</a></li>
+      <li><a href="#event">EVENT</a></li>
+      <li><a href="#qa">Q&amp;A</a></li>
+      <li><a href="#entry" class="entry-link">PRE-ENTRY</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mob-menu" id="mobMenu">
+  <a href="#home"    onclick="closeMob()">HOME</a>
+  <a href="#about"   onclick="closeMob()">ABOUT</a>
+  <a href="#service" onclick="closeMob()">SERVICE</a>
+  <a href="#mentor"  onclick="closeMob()">MENTOR</a>
+  <a href="#sponsor" onclick="closeMob()">SPONSOR</a>
+  <a href="#event"   onclick="closeMob()">EVENT</a>
+  <a href="#qa"      onclick="closeMob()">Q&amp;A</a>
+  <a href="#entry"   onclick="closeMob()">ENTRY</a>
+</div>
+
+<!-- ══════════════ HOME ══════════════ -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-logo-block">
+      <img src="kuf_lab_hp_home.png" alt="KUF Lab." style="max-width:min(700px,88vw);width:100%;height:auto;display:block;">
+    </div>
+    <p class="hero-sub">金融の世界へ、京大から踏み出す第一歩</p>
+    <a href="#entry" class="hero-btn">事前エントリーはこちら</a>
+  </div>
+  <div class="hero-scroll">
+    <span class="hero-scroll-label">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about">
+  <div class="wrap">
+    <span class="sec-label reveal">About</span>
+    <h2 class="sec-title reveal">KUF Lab. とは</h2>
+    <div class="gold-bar reveal"></div>
+
+    <div class="about-intro reveal">
+      <p class="about-intro-lead">
+        京都大学から、<em>金融業界の中枢</em>へ。<br>
+        その道筋を、初めて体系的につくるコミュニティ。
+      </p>
+      <p class="about-intro-body">
+        KUF Lab. は、投資銀行をはじめとする金融業界を志す京大生のために設立された、京都大学初の金融キャリア特化コミュニティです。京都大学 経営管理大学院の砂川伸幸教授をアドバイザーに迎え、学術的な信頼性と実務ネットワークを基盤に活動します。約30名のコミュニティメンバーには、協賛企業による講座や内定者メンタリングなど全プログラムを無料で提供します。
+      </p>
+    </div>
+
+    <div class="about-blocks">
+      <div class="about-block reveal d1">
+        <span class="about-block-num">01</span>
+        <span class="about-block-title">Background</span>
+        <p class="about-block-text">
+          投資銀行の内定者に占める京大生の割合はわずか6%。これは京大生の能力の問題ではなく、<strong>採用情報・機会・ネットワークへのアクセスが、東京の大学と比べて著しく限られている</strong>という構造的な問題によるものです。ナビサイトや合同説明会は首都圏に最適化されており、京都にいる学生は出遅れた状態でスタートを強いられています。
+        </p>
+      </div>
+      <div class="about-block reveal d2">
+        <span class="about-block-num">02</span>
+        <span class="about-block-title">Mission</span>
+        <p class="about-block-text">
+          私たちは「採用したい企業」と「可能性のある学生」の間にある橋を架けます。ファイナンス講座・模擬JOBワーク・内定者メンタリングという3つの柱を通じて、<strong>知識ゼロの状態から投資銀行就活の本番まで</strong>を一気通貫でサポートします。約30名のコミュニティメンバーには、全プログラムを無料で提供します。
+        </p>
+      </div>
+      <div class="about-block reveal d3">
+        <span class="about-block-num">03</span>
+        <span class="about-block-title">Strength</span>
+        <p class="about-block-text">
+          砂川ゼミとの制度的連携による<strong>学術的な信頼性</strong>と、協賛企業との直接的なパイプラインによる<strong>実務への接続</strong>。この両輪が、他のどのコミュニティにもないKUF Lab. 独自の強みです。約30名のメンバーには全プログラムを無料で提供し、少人数だからこそ実現できる濃密な機会を届けます。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SERVICE ══════════════ -->
+<section id="service">
+  <div class="wrap">
+    <div class="service-header">
+      <div>
+        <span class="sec-label reveal">Service</span>
+        <h2 class="sec-title reveal">提供サービス</h2>
+        <div class="gold-bar reveal"></div>
+      </div>
+      <p class="sec-sub reveal">企業との深い接点を創出するプログラムを提供します。コミュニティメンバー（約30名）は全プログラム無料で参加できます。</p>
+    </div>
+
+    <div class="service-cards">
+      <div class="service-card reveal d1">
+        <div class="service-card-body">
+          <span class="service-card-num">01</span>
+          <h3 class="service-card-title">ファイナンス講座</h3>
+          <span class="service-card-en">Finance Lecture</span>
+          <p class="service-card-text">
+            協賛企業・砂川教授による実践的なファイナンス講座。Valuationや財務モデリングをはじめ、投資銀行就活で問われる金融知識を、知識ゼロの状態から体系的に習得できるカリキュラムを提供します。
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card reveal d2">
+        <div class="service-card-body">
+          <span class="service-card-num">02</span>
+          <h3 class="service-card-title">模擬JOBワーク</h3>
+          <span class="service-card-en">Mock JOB Work</span>
+          <p class="service-card-text">
+            実際の企業課題に取り組む1日間・5日間の実務ワーク。現役バンカーや対象企業の社員を招いた本番想定のグループワークを通じて、Job選考を突破するための実戦力を養います。
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card reveal d3">
+        <div class="service-card-body">
+          <span class="service-card-num">03</span>
+          <h3 class="service-card-title">メンタリング</h3>
+          <span class="service-card-en">Mentoring</span>
+          <p class="service-card-text">
+            投資銀行（IBD）内定者による個別キャリア支援。ES添削・面接対策・OB訪問のコーディネートまで、就職活動の全過程を伴走します。内定獲得までサポートが続きます。
+          </p>
+        </div>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:12px;color:var(--muted);margin-top:28px;font-weight:300;letter-spacing:.02em;">※ 上記は現在予定しているサービス内容です。状況に応じて変更となる場合があります。</p>
+  </div>
+</section>
+
+<!-- ══════════════ MENTOR ══════════════ -->
+<section id="mentor">
+  <div class="wrap">
+    <span class="sec-label reveal">Mentor</span>
+    <h2 class="sec-title reveal">メンター・アドバイザー</h2>
+    <div class="gold-bar reveal"></div>
+
+    <div class="mentor-layout">
+      <!-- Track Record -->
+      <div class="track-card reveal">
+        <div class="track-card-header">
+          <span class="track-card-title">メンター 内定・インターン参加実績</span>
+          <span class="track-card-badge">2025年度</span>
+        </div>
+        <div class="track-list">
+          <div class="track-item">
+            <span class="track-idx">01</span>
+            <span class="track-firm">Goldman Sachs</span>
+          </div>
+          <div class="track-item">
+            <span class="track-idx">02</span>
+            <span class="track-firm">Morgan Stanley</span>
+          </div>
+          <div class="track-item">
+            <span class="track-idx">03</span>
+            <span class="track-firm">Bank of America</span>
+          </div>
+          <div class="track-item">
+            <span class="track-idx">04</span>
+            <span class="track-firm">SMBC日興証券</span>
+          </div>
+          <div class="track-item">
+            <span class="track-idx">05</span>
+            <span class="track-firm">野村証券</span>
+          </div>
+          <div class="track-item">
+            <span class="track-idx">06</span>
+            <span class="track-firm">みずほ証券</span>
+          </div>
+          <div class="track-item">
+            <span class="track-idx">07</span>
+            <span class="track-firm">三菱UFJモルガン・スタンレー証券</span>
+          </div>
+          <div class="track-item">
+            <span class="track-idx">08</span>
+            <span class="track-firm">大和証券</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advisor -->
+      <div class="advisor-card reveal d2">
+        <div class="advisor-card-inner">
+          <div class="advisor-photo-row">
+            <img class="advisor-photo" src="photo_Isagawa.gif" alt="砂川伸幸 教授">
+            <div class="advisor-meta">
+              <span class="advisor-tag">Academic Advisor</span>
+              <h3 class="advisor-name">砂川 伸幸 教授</h3>
+              <p class="advisor-role">
+                京都大学 大学院経営管理研究部<br>
+                京都大学 経営管理大学院
+              </p>
+            </div>
+          </div>
+          <div class="advisor-divider"></div>
+          <p class="advisor-desc">
+            コーポレートファイナンスを専門とし、企業価値評価・資本政策・M&Aなど実務に直結した研究を行う。産業界との幅広いネットワークを有し、某投資銀行においてコーポレートファイナンスの新人研修も担当している。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SPONSOR ══════════════ -->
+<section id="sponsor">
+  <div class="wrap">
+    <span class="sec-label reveal">Sponsor</span>
+    <h2 class="sec-title reveal">協賛企業</h2>
+    <div class="gold-bar reveal"></div>
+
+    <div class="sponsor-cs reveal">
+      <span class="sponsor-cs-eyebrow">Coming Soon</span>
+      <p class="sponsor-cs-text">Coming Soon<span>.</span></p>
+      <p class="sponsor-cs-sub">
+        協賛企業の情報は順次公開予定です。<br>
+        事前エントリーをすると、最新情報をいち早く受け取れます。
+      </p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScHdunslIK5TMP11pci0gpuZgCHWwYmjOUGLBNA9Rruz3OCcQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="hero-btn" style="margin-top:8px;">事前エントリーする &nbsp;→</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ EVENT ══════════════ -->
+<section id="event">
+  <div class="wrap">
+    <span class="sec-label reveal">Event</span>
+    <h2 class="sec-title reveal">イベント情報</h2>
+    <div class="gold-bar reveal"></div>
+
+    <div class="event-cs reveal">
+      <span class="event-cs-eyebrow">Next Event</span>
+      <p class="event-cs-text">Coming Soon<span>.</span></p>
+      <p class="event-cs-sub">
+        今後開催するイベント・説明会の情報をこちらで告知します。<br>
+        事前エントリーをすると、最新情報をいち早く受け取れます。
+      </p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScHdunslIK5TMP11pci0gpuZgCHWwYmjOUGLBNA9Rruz3OCcQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="hero-btn" style="margin-top:8px;">事前エントリーする &nbsp;→</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ Q&A ══════════════ -->
+<section id="qa">
+  <div class="wrap">
+    <div class="qa-layout">
+      <div class="qa-side reveal">
+        <span class="qa-side-label">Q &amp; A</span>
+        <h2 class="qa-side-title">よくある<br>質問</h2>
+        <div class="qa-side-bar"></div>
+        <p class="qa-side-text">
+          KUF Lab. への参加を検討されている方からよく寄せられる質問をまとめました。<br>その他のご質問はお気軽にお問い合わせください。
+        </p>
+      </div>
+
+      <div class="faq-list reveal d1">
+        <details class="faq-item">
+          <summary class="faq-q">
+            <div class="faq-q-inner">
+              <span class="faq-q-mark">Q.</span>
+              <span class="faq-q-text">KUF Lab. とはどんなコミュニティですか？</span>
+            </div>
+            <span class="faq-toggle">+</span>
+          </summary>
+          <p class="faq-answer">
+            金融業界（投資銀行など）を目指す京都大学生のための、キャリア支援特化コミュニティです。ファイナンス講座・模擬JOBワーク・内定者メンタリングを通じて就職活動を全面的にサポートします。約30名のコミュニティメンバーには全プログラムを無料で提供しています。京都大学 経営管理大学院の砂川伸幸教授がアドバイザーを務めています。
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">
+            <div class="faq-q-inner">
+              <span class="faq-q-mark">Q.</span>
+              <span class="faq-q-text">参加資格はありますか？</span>
+            </div>
+            <span class="faq-toggle">+</span>
+          </summary>
+          <p class="faq-answer">
+            京都大学に在籍している学部生・大学院生で、金融業界への就職を真剣に考えている方が対象です。学年・学部は問いません。コミュニティメンバーは約30名を想定しており、応募人数によっては選考を実施する場合があります。選考の実施方法・時期については、追って詳細をご案内いたします。
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">
+            <div class="faq-q-inner">
+              <span class="faq-q-mark">Q.</span>
+              <span class="faq-q-text">参加費はかかりますか？</span>
+            </div>
+            <span class="faq-toggle">+</span>
+          </summary>
+          <p class="faq-answer">
+            コミュニティメンバー（約30名）は、協賛企業様のサポートにより全プログラムを無料で受けられます。
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">
+            <div class="faq-q-inner">
+              <span class="faq-q-mark">Q.</span>
+              <span class="faq-q-text">金融の知識がなくても参加できますか？</span>
+            </div>
+            <span class="faq-toggle">+</span>
+          </summary>
+          <p class="faq-answer">
+            はい、まったく問題ありません。ファイナンス講座では知識ゼロの状態から、投資銀行就活で通用するレベルまで体系的に学べるカリキュラムを用意しています。熱意と志があれば歓迎します。
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">
+            <div class="faq-q-inner">
+              <span class="faq-q-mark">Q.</span>
+              <span class="faq-q-text">選考はどのように行われますか？</span>
+            </div>
+            <span class="faq-toggle">+</span>
+          </summary>
+          <p class="faq-answer">
+            応募人数によっては選考を実施する場合があります。選考の実施方法・時期については、追って詳細をご案内いたします。
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">
+            <div class="faq-q-inner">
+              <span class="faq-q-mark">Q.</span>
+              <span class="faq-q-text">投資銀行以外の金融機関も対象ですか？</span>
+            </div>
+            <span class="faq-toggle">+</span>
+          </summary>
+          <p class="faq-answer">
+            現状、協賛企業によるイベント等のサポートは投資銀行（IBD）が中心となっていますが、それ以外の金融機関を志望される方についても、メンタリング等を通じてサポートしていく方針です。
+          </p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ENTRY ══════════════ -->
+<section id="entry">
+  <div class="wrap">
+    <div class="entry-inner">
+      <span class="sec-label reveal">Pre-Entry</span>
+      <h2 class="sec-title reveal">事前エントリー</h2>
+      <div class="gold-bar reveal" style="margin-left:auto;margin-right:auto;"></div>
+
+      <div class="reveal" style="margin-bottom:48px;">
+        <div class="entry-deadline-box">
+          <span class="entry-deadline-label">締切</span>
+          <span class="entry-deadline-date">2026年4月30日</span>
+        </div>
+      </div>
+
+      <ul class="entry-points reveal d1">
+        <li><span class="entry-dot"></span>事前エントリーをすると、最新の活動情報をいち早く受け取れます</li>
+        <li><span class="entry-dot"></span>対象：京都大学在籍の学部生・大学院生</li>
+        <li><span class="entry-dot"></span>コミュニティメンバー（約30名）：全プログラム無料</li>
+        <li><span class="entry-dot"></span>応募人数により選考を実施する場合があります（詳細は追ってご案内）</li>
+      </ul>
+
+      <div class="reveal d2">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScHdunslIK5TMP11pci0gpuZgCHWwYmjOUGLBNA9Rruz3OCcQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="entry-gform-btn">
+          事前エントリーする &nbsp;→
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="footer-logo-img" src="kuf_lab_hp_header.png" alt="KUF Lab.">
+        <p class="footer-tagline">京都大学 金融キャリア支援コミュニティ</p>
+        <p class="footer-advisor">
+          アドバイザー：砂川伸幸 教授<br>
+          京都大学 経営管理大学院
+        </p>
+      </div>
+      <nav class="footer-nav-col">
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#service">SERVICE</a>
+        <a href="#mentor">MENTOR</a>
+        <a href="#sponsor">SPONSOR</a>
+        <a href="#event">EVENT</a>
+        <a href="#qa">Q&amp;A</a>
+        <a href="#entry">ENTRY</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 KUF Lab. All rights reserved.</span>
+      <span class="footer-built">Kyoto University Finance Career Community</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════ SCRIPT ══════════════ -->
+<script>
+/* ── Hamburger ── */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobMenu').classList.toggle('open');
+});
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+
+/* ── Scroll Reveal ── */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ── Active nav highlight ── */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a:not(.entry-link)');
+const activeObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => {
+        const isActive = a.getAttribute('href') === '#' + e.target.id;
+        a.style.color = isActive ? 'var(--gold-bright)' : '';
+      });
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => activeObs.observe(s));
+
+</script>
+</body>
+</html>
