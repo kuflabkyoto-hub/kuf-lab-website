@@ -1583,9 +1583,11 @@ footer {
       <span class="footer-contact-title">Contact</span>
       <h3 class="footer-contact-heading">お問い合わせ</h3>
       <div class="footer-contact-bar"></div>
-      <form class="contact-form" id="contactForm" name="contact" action="/" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact">
-        <p class="contact-field" style="display:none"><input name="bot-field"></p>
+      <form class="contact-form" id="contactForm" action="https://formsubmit.co/kuflab.kyoto@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" value="【KUF Lab.】新しいお問い合わせ">
+        <input type="text" name="_honey" style="display:none">
         <div class="contact-field">
           <label class="contact-label">氏名<span class="req">*</span></label>
           <input class="contact-input" type="text" name="name" placeholder="山田 太郎" required>
@@ -1655,10 +1657,10 @@ function closeMob() { document.getElementById('mobMenu').classList.remove('open'
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const form = e.target;
-  fetch('/', {
+  fetch(form.action, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(new FormData(form)).toString()
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(Object.fromEntries(new FormData(form)))
   }).then(function(res) {
     if (res.ok) {
       form.style.display = 'none';
