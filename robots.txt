@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://kuf-lab.netlify.app/sitemap.xml
+Sitemap: https://kuflabkyoto-hub.github.io/kuf-lab-website/sitemap.xml
