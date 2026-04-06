@@ -79,11 +79,10 @@ header {
   top: 0; left: 0; right: 0;
   z-index: 1000;
   height: 64px;
-  background: rgba(255,255,255,.85);
+  background: rgba(11,26,46,.97);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(200,169,110,.15);
-  transition: background .4s, border-color .4s;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
 }
@@ -115,23 +114,14 @@ header {
   font-weight: 500;
   letter-spacing: .17em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--silver);
   text-decoration: none;
   line-height: 64px;
-  transition: color .3s;
+  transition: color .2s;
   white-space: nowrap;
 }
-.nav-links a:hover { color: var(--gold); }
-.nav-links a.active { color: var(--gold); }
-
-/* Header scrolled state */
-header.scrolled {
-  background: rgba(11,26,46,.97);
-  border-bottom-color: var(--border);
-}
-header.scrolled .nav-links a { color: var(--silver); }
-header.scrolled .nav-links a:hover { color: var(--gold-bright); }
-header.scrolled .hamburger span { background: var(--gold); }
+.nav-links a:hover { color: var(--gold-bright); }
+.nav-links a.active { color: var(--gold-bright); }
 .nav-links a.entry-link {
   background: var(--gold);
   color: var(--navy);
@@ -153,7 +143,7 @@ header.scrolled .hamburger span { background: var(--gold); }
   margin-right: 12px;
   flex-shrink: 0;
 }
-.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); transition: all .3s; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--gold); transition: all .3s; }
 
 .mob-menu {
   display: none;
@@ -1521,18 +1511,6 @@ document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('mobMenu').classList.toggle('open');
 });
 function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
-
-/* ── Header scroll state ── */
-const hdr = document.querySelector('header');
-function checkScroll() {
-  if (window.scrollY > window.innerHeight * 0.35) {
-    hdr.classList.add('scrolled');
-  } else {
-    hdr.classList.remove('scrolled');
-  }
-}
-window.addEventListener('scroll', checkScroll, { passive: true });
-checkScroll();
 
 /* ── Scroll Reveal ── */
 const revealObs = new IntersectionObserver((entries) => {
