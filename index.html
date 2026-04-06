@@ -1581,7 +1581,7 @@ footer {
       <span class="footer-contact-title">Contact</span>
       <h3 class="footer-contact-heading">お問い合わせ</h3>
       <div class="footer-contact-bar"></div>
-      <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
         <p class="contact-field" style="display:none"><input name="bot-field"></p>
         <div class="contact-field">
@@ -1608,6 +1608,10 @@ footer {
           <button class="contact-submit" type="submit">送信する &nbsp;→</button>
         </div>
       </form>
+      <div id="contactSuccess" style="display:none;text-align:center;padding:60px 20px;">
+        <p style="font-family:var(--font-d);font-size:28px;color:var(--gold-bright);margin-bottom:16px;">送信が完了しました</p>
+        <p style="font-size:14px;color:var(--silver);line-height:1.8;">お問い合わせいただきありがとうございます。<br>内容を確認の上、ご連絡いたします。</p>
+      </div>
     </div>
 
     <div class="footer-top">
@@ -1644,6 +1648,22 @@ document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('mobMenu').classList.toggle('open');
 });
 function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+
+/* ── Contact Form Submit ── */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = e.target;
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(new FormData(form)).toString()
+  }).then(() => {
+    form.style.display = 'none';
+    document.getElementById('contactSuccess').style.display = 'block';
+  }).catch(() => {
+    alert('送信に失敗しました。もう一度お試しください。');
+  });
+});
 
 /* ── Scroll Reveal ── */
 const revealObs = new IntersectionObserver((entries) => {
