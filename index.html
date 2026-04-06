@@ -898,6 +898,96 @@ details[open] .faq-toggle { background: var(--gold); border-color: var(--gold); 
 .entry-gform-btn:hover { background: var(--gold-bright); gap: 24px; }
 
 /* ════════════════════════════════════════
+   CONTACT FORM (in footer)
+════════════════════════════════════════ */
+.footer-contact {
+  padding-bottom: 44px;
+  border-bottom: 1px solid var(--border-dim);
+  margin-bottom: 44px;
+}
+.footer-contact-title {
+  font-family: var(--font-m);
+  font-size: 9.5px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+.footer-contact-heading {
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.footer-contact-bar {
+  width: 32px; height: 1.5px;
+  background: var(--gold);
+  opacity: .8;
+  margin-bottom: 28px;
+}
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 800px;
+}
+.contact-field { display: flex; flex-direction: column; gap: 6px; }
+.contact-field.full { grid-column: 1 / -1; }
+.contact-label {
+  font-family: var(--font-m);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--silver);
+}
+.contact-label .req { color: var(--gold); margin-left: 4px; }
+.contact-input,
+.contact-textarea {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  color: var(--cream);
+  font-family: var(--font-b);
+  font-size: 14px;
+  padding: 12px 16px;
+  transition: border-color .2s, background .2s;
+  outline: none;
+  width: 100%;
+}
+.contact-input:focus,
+.contact-textarea:focus {
+  border-color: var(--gold);
+  background: rgba(255,255,255,.06);
+}
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+  color: var(--muted);
+  font-size: 13px;
+}
+.contact-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.contact-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-m);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold);
+  border: none;
+  padding: 16px 44px;
+  cursor: pointer;
+  transition: background .3s;
+  margin-top: 4px;
+}
+.contact-submit:hover { background: var(--gold-bright); }
+
+/* ════════════════════════════════════════
    FOOTER
 ════════════════════════════════════════ */
 footer {
@@ -980,6 +1070,7 @@ footer {
   .hamburger { display: flex; }
   .nav-logo img { height: 40px !important; }
   .footer-wrap { padding: 0 20px; }
+  .contact-form { grid-template-columns: 1fr; }
 
   /* Hero */
   .hero-content { padding: 60px 20px 40px; }
@@ -1484,6 +1575,41 @@ footer {
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer>
   <div class="footer-wrap">
+
+    <!-- Contact Form -->
+    <div class="footer-contact">
+      <span class="footer-contact-title">Contact</span>
+      <h3 class="footer-contact-heading">お問い合わせ</h3>
+      <div class="footer-contact-bar"></div>
+      <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="contact-field" style="display:none"><input name="bot-field"></p>
+        <div class="contact-field">
+          <label class="contact-label">氏名<span class="req">*</span></label>
+          <input class="contact-input" type="text" name="name" placeholder="山田 太郎" required>
+        </div>
+        <div class="contact-field">
+          <label class="contact-label">メールアドレス<span class="req">*</span></label>
+          <input class="contact-input" type="email" name="email" placeholder="example@email.com" required>
+        </div>
+        <div class="contact-field full">
+          <label class="contact-label">所属（企業名/団体名/大学名）<span class="req">*</span></label>
+          <input class="contact-input" type="text" name="affiliation" placeholder="京都大学" required>
+        </div>
+        <div class="contact-field full">
+          <label class="contact-label">件名</label>
+          <input class="contact-input" type="text" name="subject" placeholder="件名を入力してください">
+        </div>
+        <div class="contact-field full">
+          <label class="contact-label">お問い合わせ内容<span class="req">*</span></label>
+          <textarea class="contact-textarea" name="message" placeholder="お問い合わせ内容を入力してください" required></textarea>
+        </div>
+        <div class="contact-field">
+          <button class="contact-submit" type="submit">送信する &nbsp;→</button>
+        </div>
+      </form>
+    </div>
+
     <div class="footer-top">
       <div class="footer-brand">
         <img class="footer-logo-img" src="kuf_lab_hp_header.png" alt="KUF Lab.">
