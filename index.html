@@ -79,10 +79,11 @@ header {
   top: 0; left: 0; right: 0;
   z-index: 1000;
   height: 64px;
-  background: rgba(11,26,46,.97);
+  background: rgba(255,255,255,.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(200,169,110,.15);
+  transition: background .4s, border-color .4s;
   display: flex;
   align-items: center;
 }
@@ -114,14 +115,23 @@ header {
   font-weight: 500;
   letter-spacing: .17em;
   text-transform: uppercase;
-  color: var(--silver);
+  color: var(--muted);
   text-decoration: none;
   line-height: 64px;
-  transition: color .2s;
+  transition: color .3s;
   white-space: nowrap;
 }
-.nav-links a:hover { color: var(--gold-bright); }
-.nav-links a.active { color: var(--gold-bright); }
+.nav-links a:hover { color: var(--gold); }
+.nav-links a.active { color: var(--gold); }
+
+/* Header scrolled state */
+header.scrolled {
+  background: rgba(11,26,46,.97);
+  border-bottom-color: var(--border);
+}
+header.scrolled .nav-links a { color: var(--silver); }
+header.scrolled .nav-links a:hover { color: var(--gold-bright); }
+header.scrolled .hamburger span { background: var(--gold); }
 .nav-links a.entry-link {
   background: var(--gold);
   color: var(--navy);
@@ -143,7 +153,7 @@ header {
   margin-right: 12px;
   flex-shrink: 0;
 }
-.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--gold); transition: all .3s; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); transition: all .3s; }
 
 .mob-menu {
   display: none;
@@ -247,18 +257,20 @@ section {
   background-image: url('kyoto_clock_tower.jpg');
   background-size: cover;
   background-position: center 30%;
-  filter: saturate(.08) brightness(.85) contrast(.95);
+  filter: saturate(.08) brightness(1.1) contrast(.9);
   z-index: 0;
 }
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    175deg,
-    rgba(11,26,46,.50) 0%,
-    rgba(11,26,46,.55) 30%,
-    rgba(11,26,46,.78) 65%,
-    rgba(11,26,46,.94) 100%
+    180deg,
+    rgba(255,255,255,.92) 0%,
+    rgba(255,255,255,.80) 20%,
+    rgba(240,238,232,.55) 40%,
+    rgba(11,26,46,.65) 60%,
+    rgba(11,26,46,.92) 80%,
+    rgba(11,26,46,.98) 100%
   );
   z-index: 1;
 }
@@ -266,15 +278,16 @@ section {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 80px 40px 60px;
+  padding: 0 40px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 .hero-logo-block {
-  margin-bottom: 36px;
+  margin-bottom: 48px;
   animation: fadeUp .9s .3s both;
-  filter: drop-shadow(0 2px 16px rgba(0,0,0,.35));
 }
 .hero-sub {
   font-family: var(--font-d);
@@ -1508,6 +1521,18 @@ document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('mobMenu').classList.toggle('open');
 });
 function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+
+/* ── Header scroll state ── */
+const hdr = document.querySelector('header');
+function checkScroll() {
+  if (window.scrollY > window.innerHeight * 0.35) {
+    hdr.classList.add('scrolled');
+  } else {
+    hdr.classList.remove('scrolled');
+  }
+}
+window.addEventListener('scroll', checkScroll, { passive: true });
+checkScroll();
 
 /* ── Scroll Reveal ── */
 const revealObs = new IntersectionObserver((entries) => {
