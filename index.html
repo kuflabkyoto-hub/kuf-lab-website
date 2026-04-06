@@ -1581,7 +1581,7 @@ footer {
       <span class="footer-contact-title">Contact</span>
       <h3 class="footer-contact-heading">お問い合わせ</h3>
       <div class="footer-contact-bar"></div>
-      <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="contact-form" id="contactForm" name="contact" action="/" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
         <p class="contact-field" style="display:none"><input name="bot-field"></p>
         <div class="contact-field">
@@ -1657,10 +1657,14 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams(new FormData(form)).toString()
-  }).then(() => {
-    form.style.display = 'none';
-    document.getElementById('contactSuccess').style.display = 'block';
-  }).catch(() => {
+  }).then(function(res) {
+    if (res.ok) {
+      form.style.display = 'none';
+      document.getElementById('contactSuccess').style.display = 'block';
+    } else {
+      alert('送信に失敗しました。もう一度お試しください。');
+    }
+  }).catch(function() {
     alert('送信に失敗しました。もう一度お試しください。');
   });
 });
