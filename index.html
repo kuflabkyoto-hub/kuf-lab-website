@@ -313,7 +313,7 @@ section {
   transition: background .3s, transform .3s;
   animation: fadeUp .9s .65s both;
 }
-.hero-btn:hover { background: var(--gold-bright); transform: translateY(-2px); }
+.hero-btn:hover { background: var(--gold-bright); transform: translateY(-2px); color: var(--navy); border-color: var(--gold-bright); }
 .hero-scroll {
   position: absolute;
   bottom: 32px;
@@ -1243,7 +1243,10 @@ footer {
       <img src="kuf_lab_hp_home.png" alt="KUF Lab." style="max-width:min(760px,92vw);width:100%;height:auto;display:block;">
     </div>
     <p class="hero-sub">金融の世界へ、京大から踏み出す第一歩</p>
-    <a href="#entry" class="hero-btn">事前エントリーはこちら</a>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;">
+      <a href="#event" class="hero-btn" style="animation:fadeUp .9s .65s both;">コミュニティ説明会 4/25</a>
+      <a href="#entry" class="hero-btn" style="animation:fadeUp .9s .75s both;background:transparent;border:1px solid var(--gold);color:var(--gold);">事前エントリーはこちら</a>
+    </div>
   </div>
   <div class="hero-scroll">
     <span class="hero-scroll-label">Scroll</span>
@@ -1459,7 +1462,7 @@ footer {
       <div style="display:flex;flex-direction:column;gap:12px;align-items:center;margin-bottom:36px;position:relative;">
         <div style="display:inline-flex;align-items:baseline;gap:20px;padding:18px 32px;background:rgba(200,169,110,.06);border:1px solid var(--border);">
           <span style="font-family:var(--font-m);font-size:9px;letter-spacing:.24em;color:var(--gold-dim);text-transform:uppercase;white-space:nowrap;">Date</span>
-          <span style="font-family:var(--font-d);font-size:24px;font-weight:300;color:var(--gold-bright);letter-spacing:.03em;white-space:nowrap;">2026年4月25日（土）14:00 – 15:00</span>
+          <span style="font-family:var(--font-d);font-size:28px;font-weight:300;color:var(--gold-bright);letter-spacing:.03em;white-space:nowrap;font-feature-settings:'lnum';">2026年4月25日（土）14:00 – 15:00</span>
         </div>
         <div style="display:inline-flex;align-items:baseline;gap:20px;padding:14px 32px;background:rgba(200,169,110,.03);border:1px solid var(--border-dim);">
           <span style="font-family:var(--font-m);font-size:9px;letter-spacing:.24em;color:var(--gold-dim);text-transform:uppercase;white-space:nowrap;">Venue</span>
