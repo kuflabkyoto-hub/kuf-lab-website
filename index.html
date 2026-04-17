@@ -313,7 +313,7 @@ section {
   transition: background .3s, transform .3s;
   animation: fadeUp .9s .65s both;
 }
-.hero-btn:hover { background: var(--gold-bright); transform: translateY(-2px); color: var(--navy); border-color: var(--gold-bright); }
+.hero-btn:hover { background: var(--gold-bright); transform: translateY(-2px); }
 .hero-scroll {
   position: absolute;
   bottom: 32px;
@@ -1060,7 +1060,8 @@ footer {
 ════════════════════════════════════════ */
 @media (max-width: 1000px) {
   .wrap { padding: 100px 32px; }
-  section { height: auto; min-height: auto; }
+  section { height: auto; min-height: auto; overflow: visible; }
+  .wrap { max-height: none; overflow-y: visible; }
   .wrap { max-height: none; }
   .about-blocks { grid-template-columns: 1fr; }
   .service-header { grid-template-columns: 1fr; gap: 24px; }
@@ -1243,10 +1244,7 @@ footer {
       <img src="kuf_lab_hp_home.png" alt="KUF Lab." style="max-width:min(760px,92vw);width:100%;height:auto;display:block;">
     </div>
     <p class="hero-sub">金融の世界へ、京大から踏み出す第一歩</p>
-    <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;">
-      <a href="#event" class="hero-btn" style="animation:fadeUp .9s .65s both;">コミュニティ説明会 4/25</a>
-      <a href="#entry" class="hero-btn" style="animation:fadeUp .9s .75s both;background:transparent;border:1px solid var(--gold);color:var(--gold);">事前エントリーはこちら</a>
-    </div>
+    <a href="#entry" class="hero-btn">事前エントリーはこちら</a>
   </div>
   <div class="hero-scroll">
     <span class="hero-scroll-label">Scroll</span>
@@ -1446,30 +1444,20 @@ footer {
 </section>
 
 <!-- ══════════════ EVENT ══════════════ -->
-<section id="event" style="height:auto;min-height:100vh;">
-  <div class="wrap" style="max-height:none;overflow:visible;padding-top:60px;padding-bottom:60px;">
+<section id="event">
+  <div class="wrap">
     <span class="sec-label reveal">Event</span>
     <h2 class="sec-title reveal">イベント情報</h2>
     <div class="gold-bar reveal"></div>
 
     <div class="event-cs reveal">
       <span class="event-cs-eyebrow">Next Event</span>
-      <p class="event-cs-text" style="font-size:clamp(28px,5vw,52px);">コミュニティ説明会</p>
-      <p class="event-cs-sub" style="max-width:520px;">
-        投資銀行とは何か、そしてKUF Lab. とは何か。<br>
-        金融キャリアへの第一歩を踏み出すための説明会を開催します。
+      <p class="event-cs-text">Coming Soon<span>.</span></p>
+      <p class="event-cs-sub">
+        今後開催するイベント・説明会の情報をこちらで告知します。<br>
+        事前エントリーをすると、最新情報をいち早く受け取れます。
       </p>
-      <div style="display:flex;flex-direction:column;gap:10px;align-items:center;margin-bottom:28px;position:relative;">
-        <div style="display:inline-flex;align-items:baseline;gap:20px;padding:18px 32px;background:rgba(200,169,110,.06);border:1px solid var(--border);">
-          <span style="font-family:var(--font-m);font-size:9px;letter-spacing:.24em;color:var(--gold-dim);text-transform:uppercase;white-space:nowrap;">Date</span>
-          <span style="font-family:var(--font-d);font-size:28px;font-weight:300;color:var(--gold-bright);letter-spacing:.03em;white-space:nowrap;font-feature-settings:'lnum';">2026年4月25日（土）14:00 – 15:00</span>
-        </div>
-        <div style="display:inline-flex;align-items:baseline;gap:20px;padding:14px 32px;background:rgba(200,169,110,.03);border:1px solid var(--border-dim);">
-          <span style="font-family:var(--font-m);font-size:9px;letter-spacing:.24em;color:var(--gold-dim);text-transform:uppercase;white-space:nowrap;">Venue</span>
-          <span style="font-size:15px;color:var(--cream);font-weight:400;letter-spacing:.04em;">オンライン開催</span>
-        </div>
-      </div>
-      <a href="https://forms.gle/QHZsunvtnFZRsQMb6" target="_blank" rel="noopener noreferrer" class="hero-btn" style="margin-top:8px;">説明会に参加する &nbsp;→</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScHdunslIK5TMP11pci0gpuZgCHWwYmjOUGLBNA9Rruz3OCcQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="hero-btn" style="margin-top:8px;">事前エントリーする &nbsp;→</a>
     </div>
   </div>
 </section>
