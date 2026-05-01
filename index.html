@@ -1216,7 +1216,6 @@ footer {
       <li><a href="#sponsor">SPONSOR</a></li>
       <li><a href="#event">EVENT</a></li>
       <li><a href="#qa">Q&amp;A</a></li>
-      <li><a href="#entry" class="entry-link">ENTRY</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -1232,7 +1231,6 @@ footer {
   <a href="#sponsor" onclick="closeMob()">SPONSOR</a>
   <a href="#event"   onclick="closeMob()">EVENT</a>
   <a href="#qa"      onclick="closeMob()">Q&amp;A</a>
-  <a href="#entry"   onclick="closeMob()">ENTRY</a>
 </div>
 
 <!-- ══════════════ HOME ══════════════ -->
@@ -1244,7 +1242,9 @@ footer {
       <img src="kuf_lab_hp_home.png" alt="KUF Lab." style="max-width:min(760px,92vw);width:100%;height:auto;display:block;">
     </div>
     <p class="hero-sub">金融の世界へ、京大から踏み出す第一歩</p>
-    <a href="#entry" class="hero-btn">エントリーはこちら</a>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+      <a href="#event" class="hero-btn" style="animation:fadeUp .9s .65s both;">コミュニティ説明会 4/25</a>
+    </div>
   </div>
   <div class="hero-scroll">
     <span class="hero-scroll-label">Scroll</span>
@@ -1435,10 +1435,8 @@ footer {
       <span class="sponsor-cs-eyebrow">Coming Soon</span>
       <p class="sponsor-cs-text">Coming Soon<span>.</span></p>
       <p class="sponsor-cs-sub">
-        協賛企業の情報は順次公開予定です。<br>
-        エントリーをすると、最新情報をいち早く受け取れます。
+        協賛企業の情報は順次公開予定です。
       </p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScHdunslIK5TMP11pci0gpuZgCHWwYmjOUGLBNA9Rruz3OCcQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="hero-btn" style="margin-top:8px;">エントリーする &nbsp;→</a>
     </div>
   </div>
 </section>
@@ -1452,12 +1450,23 @@ footer {
 
     <div class="event-cs reveal">
       <span class="event-cs-eyebrow">Next Event</span>
-      <p class="event-cs-text">Coming Soon<span>.</span></p>
-      <p class="event-cs-sub">
-        今後開催するイベント・説明会の情報をこちらで告知します。<br>
-        エントリーをすると、最新情報をいち早く受け取れます。
+      <p class="event-cs-text" style="font-size:clamp(28px,5vw,52px);">コミュニティ説明会</p>
+      <p class="event-cs-sub" style="max-width:520px;">
+        投資銀行とは何か、そしてKUF Lab. とは何か。<br>
+        金融キャリアへの第一歩を踏み出すための説明会を開催します。
       </p>
-      <a href="#entry" class="hero-btn" style="margin-top:8px;">エントリーする &nbsp;→</a>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center;margin-bottom:36px;position:relative;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 20px;background:rgba(200,169,110,.06);border:1px solid var(--border);">
+          <span style="font-family:var(--font-m);font-size:9px;letter-spacing:.24em;color:var(--gold-dim);text-transform:uppercase;">Date</span>
+          <span style="font-family:var(--font-d);font-size:clamp(18px,4vw,26px);font-weight:300;color:var(--gold-bright);letter-spacing:.03em;font-feature-settings:'lnum';text-align:center;">2026年4月25日（土）</span>
+          <span style="font-family:var(--font-d);font-size:clamp(16px,3.5vw,22px);font-weight:300;color:var(--gold-bright);letter-spacing:.03em;font-feature-settings:'lnum';">14:00 – 15:00</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:12px 20px;padding:14px 24px;background:rgba(200,169,110,.03);border:1px solid var(--border-dim);">
+          <span style="font-family:var(--font-m);font-size:9px;letter-spacing:.24em;color:var(--gold-dim);text-transform:uppercase;white-space:nowrap;">Venue</span>
+          <span style="font-size:15px;color:var(--cream);font-weight:400;letter-spacing:.04em;">オンライン開催</span>
+        </div>
+      </div>
+      <a href="https://forms.gle/QHZsunvtnFZRsQMb6" target="_blank" rel="noopener noreferrer" class="hero-btn" style="margin-top:8px;">説明会に参加する &nbsp;→</a>
     </div>
   </div>
 </section>
@@ -1497,7 +1506,7 @@ footer {
             <span class="faq-toggle">+</span>
           </summary>
           <p class="faq-answer">
-            京都大学に在籍している学部生・大学院生で、金融業界への就職を真剣に考えている方が対象です。<strong>第一期コミュニティメンバーは、2028年卒業（28卒）予定の方に限定して募集しています。学部は不問です。</strong>コミュニティメンバーは約30名を想定しており、応募人数によっては選考を実施する場合があります。選考の実施方法・時期については、追って詳細をご案内いたします。
+            京都大学に在籍している学部生・大学院生で、金融業界への就職を真剣に考えている方が対象です。学年・学部は問いません。コミュニティメンバーは約30名を想定しており、応募人数によっては選考を実施する場合があります。選考の実施方法・時期については、追って詳細をご案内いたします。
           </p>
         </details>
         <details class="faq-item">
@@ -1548,37 +1557,6 @@ footer {
             現状、協賛企業によるイベント等のサポートは投資銀行（IBD）が中心となっていますが、それ以外の金融機関を志望される方についても、メンタリング等を通じてサポートしていく方針です。
           </p>
         </details>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ ENTRY ══════════════ -->
-<section id="entry">
-  <div class="wrap">
-    <div class="entry-inner">
-      <span class="sec-label reveal">Entry</span>
-      <h2 class="sec-title reveal">第一期コミュニティメンバー<br><em>エントリー受付中</em></h2>
-      <div class="gold-bar reveal" style="margin-left:auto;margin-right:auto;"></div>
-
-      <div class="reveal" style="margin-bottom:48px;">
-        <div class="entry-deadline-box">
-          <span class="entry-deadline-label">締切</span>
-          <span class="entry-deadline-date">2026年4月30日（木）23:59</span>
-        </div>
-      </div>
-
-      <ul class="entry-points reveal d1">
-        <li><span class="entry-dot"></span>エントリーをすると、最新の活動情報をいち早く受け取れます</li>
-        <li><span class="entry-dot"></span>対象：京都大学在籍の学部生・大学院生</li>
-        <li><span class="entry-dot"></span>コミュニティメンバー（約30名）：全プログラム無料</li>
-        <li><span class="entry-dot"></span>応募人数により選考を実施する場合があります（詳細は追ってご案内）</li>
-      </ul>
-
-      <div class="reveal d2">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScHdunslIK5TMP11pci0gpuZgCHWwYmjOUGLBNA9Rruz3OCcQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="entry-gform-btn">
-          エントリーする &nbsp;→
-        </a>
       </div>
     </div>
   </div>
@@ -1645,7 +1623,6 @@ footer {
         <a href="#sponsor">SPONSOR</a>
         <a href="#event">EVENT</a>
         <a href="#qa">Q&amp;A</a>
-        <a href="#entry">ENTRY</a>
       </nav>
     </div>
     <div class="footer-bottom">
