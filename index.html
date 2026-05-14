@@ -1216,6 +1216,7 @@ footer {
       <li><a href="#sponsor">SPONSOR</a></li>
       <li><a href="#event">EVENT</a></li>
       <li><a href="#qa">Q&amp;A</a></li>
+      <li><a href="#entry" class="entry-link">PRE-ENTRY</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -1231,6 +1232,7 @@ footer {
   <a href="#sponsor" onclick="closeMob()">SPONSOR</a>
   <a href="#event"   onclick="closeMob()">EVENT</a>
   <a href="#qa"      onclick="closeMob()">Q&amp;A</a>
+  <a href="#entry"   onclick="closeMob()">ENTRY</a>
 </div>
 
 <!-- ══════════════ HOME ══════════════ -->
@@ -1429,11 +1431,11 @@ footer {
     <div class="gold-bar reveal"></div>
 
     <div class="sponsor-list reveal" style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;max-width:720px;margin-left:auto;margin-right:auto;">
-      <div class="sponsor-item" style="padding:28px 36px;border:1px solid var(--border);background:#ffffff;display:flex;align-items:center;justify-content:center;text-align:center;min-height:140px;">
-        <img src="logo_smbc_nikko.jpg" alt="SMBC日興証券" style="max-height:80px;max-width:100%;width:auto;height:auto;object-fit:contain;">
+      <div class="sponsor-item" style="padding:28px 36px;border:1px solid var(--border);background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:center;text-align:center;min-height:140px;">
+        <img src="logo_smbc_nikko.png" alt="SMBC日興証券" style="max-height:80px;max-width:100%;width:auto;height:auto;object-fit:contain;filter:brightness(0) invert(1);">
       </div>
-      <div class="sponsor-item" style="padding:28px 36px;border:1px solid var(--border);background:#ffffff;display:flex;align-items:center;justify-content:center;text-align:center;min-height:140px;">
-        <img src="logo_mufg_ms.webp" alt="三菱UFJモルガン・スタンレー証券" style="max-height:90px;max-width:100%;width:auto;height:auto;object-fit:contain;">
+      <div class="sponsor-item" style="padding:28px 36px;border:1px solid var(--border);background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:center;text-align:center;min-height:140px;">
+        <img src="logo_mufg_ms.png" alt="三菱UFJモルガン・スタンレー証券" style="max-height:90px;max-width:100%;width:auto;height:auto;object-fit:contain;filter:brightness(0) invert(1);">
       </div>
       <div class="sponsor-item" style="padding:28px 36px;border:1px dashed var(--border-dim);background:rgba(255,255,255,.01);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:140px;gap:10px;">
         <span style="font-family:var(--font-m);font-size:9.5px;letter-spacing:.32em;color:var(--gold-dim);text-transform:uppercase;">Next Sponsor</span>
@@ -1552,6 +1554,37 @@ footer {
   </div>
 </section>
 
+<!-- ══════════════ ENTRY ══════════════ -->
+<section id="entry">
+  <div class="wrap">
+    <div class="entry-inner">
+      <span class="sec-label reveal">Pre-Entry</span>
+      <h2 class="sec-title reveal">事前エントリー</h2>
+      <div class="gold-bar reveal" style="margin-left:auto;margin-right:auto;"></div>
+
+      <div class="reveal" style="margin-bottom:48px;">
+        <div class="entry-deadline-box">
+          <span class="entry-deadline-label">締切</span>
+          <span class="entry-deadline-date">2026年4月24日（金）</span>
+        </div>
+      </div>
+
+      <ul class="entry-points reveal d1">
+        <li><span class="entry-dot"></span>事前エントリーをすると、最新の活動情報をいち早く受け取れます</li>
+        <li><span class="entry-dot"></span>対象：京都大学在籍の学部生・大学院生</li>
+        <li><span class="entry-dot"></span>コミュニティメンバー（約30名）：全プログラム無料</li>
+        <li><span class="entry-dot"></span>応募人数により選考を実施する場合があります（詳細は追ってご案内）</li>
+      </ul>
+
+      <div class="reveal d2">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScHdunslIK5TMP11pci0gpuZgCHWwYmjOUGLBNA9Rruz3OCcQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="entry-gform-btn">
+          事前エントリーする &nbsp;→
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer>
   <div class="footer-wrap">
@@ -1613,6 +1646,7 @@ footer {
         <a href="#sponsor">SPONSOR</a>
         <a href="#event">EVENT</a>
         <a href="#qa">Q&amp;A</a>
+        <a href="#entry">ENTRY</a>
       </nav>
     </div>
     <div class="footer-bottom">
