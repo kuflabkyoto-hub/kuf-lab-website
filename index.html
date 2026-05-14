@@ -1216,7 +1216,6 @@ footer {
       <li><a href="#sponsor">SPONSOR</a></li>
       <li><a href="#event">EVENT</a></li>
       <li><a href="#qa">Q&amp;A</a></li>
-      <li><a href="https://forms.gle/2yfd1roCVYP4j6Z3A" target="_blank" rel="noopener noreferrer" class="entry-link">ENTRY</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -1232,7 +1231,6 @@ footer {
   <a href="#sponsor" onclick="closeMob()">SPONSOR</a>
   <a href="#event"   onclick="closeMob()">EVENT</a>
   <a href="#qa"      onclick="closeMob()">Q&amp;A</a>
-  <a href="#entry"   onclick="closeMob()">ENTRY</a>
 </div>
 
 <!-- ══════════════ HOME ══════════════ -->
@@ -1244,7 +1242,6 @@ footer {
       <img src="kuf_lab_hp_home.png" alt="KUF Lab." style="max-width:min(760px,92vw);width:100%;height:auto;display:block;">
     </div>
     <p class="hero-sub">金融の世界へ、京大から踏み出す第一歩</p>
-    <a href="https://forms.gle/2yfd1roCVYP4j6Z3A" target="_blank" rel="noopener noreferrer" class="hero-btn">エントリーはこちら &nbsp;→</a>
   </div>
   <div class="hero-scroll">
     <span class="hero-scroll-label">Scroll</span>
@@ -1428,16 +1425,22 @@ footer {
 <section id="sponsor">
   <div class="wrap">
     <span class="sec-label reveal">Sponsor</span>
-    <h2 class="sec-title reveal">協賛企業</h2>
+    <h2 class="sec-title reveal">協賛企業一覧（50音順）</h2>
     <div class="gold-bar reveal"></div>
 
-    <div class="sponsor-cs reveal">
-      <span class="sponsor-cs-eyebrow">Coming Soon</span>
-      <p class="sponsor-cs-text">Coming Soon<span>.</span></p>
-      <p class="sponsor-cs-sub">
-        協賛企業の情報は順次公開予定です。
-      </p>
+    <div class="sponsor-list reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:40px;">
+      <div class="sponsor-item" style="padding:32px 28px;border:1px solid var(--border);background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:center;text-align:center;min-height:120px;">
+        <span style="font-size:17px;color:var(--cream);font-weight:500;letter-spacing:.04em;line-height:1.5;">SMBC日興証券</span>
+      </div>
+      <div class="sponsor-item" style="padding:32px 28px;border:1px solid var(--border);background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:center;text-align:center;min-height:120px;">
+        <span style="font-size:17px;color:var(--cream);font-weight:500;letter-spacing:.04em;line-height:1.5;">三菱UFJモルガン・スタンレー証券</span>
+      </div>
+      <div class="sponsor-item" style="padding:32px 28px;border:1px dashed var(--border-dim);background:rgba(255,255,255,.01);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:120px;gap:8px;">
+        <span style="font-family:var(--font-m);font-size:9px;letter-spacing:.32em;color:var(--gold-dim);text-transform:uppercase;">Coming Soon</span>
+        <span style="font-family:var(--font-d);font-size:22px;font-style:italic;font-weight:300;color:rgba(240,235,224,.4);letter-spacing:.04em;">Coming Soon<span style="color:var(--gold);">.</span></span>
+      </div>
     </div>
+    <p class="reveal" style="font-size:12px;color:var(--muted);font-weight:300;letter-spacing:.02em;text-align:center;">※ 協賛企業は今後さらに追加予定です。</p>
   </div>
 </section>
 
@@ -1529,7 +1532,7 @@ footer {
             <span class="faq-toggle">+</span>
           </summary>
           <p class="faq-answer">
-            応募人数により選考を実施します。選考フローは <strong>ES選考 → 面接</strong> の二段階を予定しています。実施時期等の詳細はエントリー後にご案内いたします。
+            応募人数によっては選考を実施する場合があります。選考の実施方法・時期については、追って詳細をご案内いたします。
           </p>
         </details>
         <details class="faq-item">
@@ -1544,31 +1547,6 @@ footer {
             現状、協賛企業によるイベント等のサポートは投資銀行（IBD）が中心となっていますが、それ以外の金融機関を志望される方についても、メンタリング等を通じてサポートしていく方針です。
           </p>
         </details>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ ENTRY ══════════════ -->
-<section id="entry">
-  <div class="wrap">
-    <div class="entry-inner">
-      <span class="sec-label reveal">Entry</span>
-      <h2 class="sec-title reveal">第一期コミュニティメンバー<br><em>エントリー受付中</em></h2>
-      <div class="gold-bar reveal" style="margin-left:auto;margin-right:auto;"></div>
-
-      <ul class="entry-points reveal d1" style="margin-top:32px;">
-        <li><span class="entry-dot"></span>対象：京都大学に在籍する 2028年卒業（28卒）予定の学部生・大学院生（学部不問）</li>
-        <li><span class="entry-dot"></span>第一期コミュニティメンバー（約30名）：全プログラム無料</li>
-        <li><span class="entry-dot"></span>選考フロー：ES選考 → 面接</li>
-      </ul>
-
-      <p class="reveal d2" style="font-size:12px;color:var(--muted);margin-top:8px;margin-bottom:36px;font-weight:300;letter-spacing:.02em;text-align:left;max-width:540px;margin-left:auto;margin-right:auto;">※ 選考フロー（ES選考 → 面接）は応募人数により実施します。実施時期等の詳細はエントリー後にご案内いたします。</p>
-
-      <div class="reveal d3">
-        <a href="https://forms.gle/2yfd1roCVYP4j6Z3A" target="_blank" rel="noopener noreferrer" class="entry-gform-btn">
-          エントリーする &nbsp;→
-        </a>
       </div>
     </div>
   </div>
@@ -1635,7 +1613,6 @@ footer {
         <a href="#sponsor">SPONSOR</a>
         <a href="#event">EVENT</a>
         <a href="#qa">Q&amp;A</a>
-        <a href="#entry">ENTRY</a>
       </nav>
     </div>
     <div class="footer-bottom">
